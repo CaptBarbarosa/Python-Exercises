@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/myprofile.css') }}">
+</head>
+<body>
+    <h1>Your Profile Details</h1>
+    <a href="/applylogin">Go back</a>
+    <form method="POST" action="/editprofile">
+        <div class="form-section">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user_details[0] }}">
+        </div>
+
+        <div class="form-section">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="{{ user_details[1] }}">
+        </div>
+
+        <div class="form-section">
+            <label for="fullname">Fullname:</label>
+            <input type="text" id="fullname" name="fullname" value="{{ user_details[2] }}">
+        </div>
+
+        <div class="form-section">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user_details[3] }}">
+        </div>
+
+        <div class="form-section">
+            <label for="telno">Telno:</label>
+            <input type="telno" id="telno" name="telno" value="{{ user_details[4] }}">
+        </div>
+        <input type="submit" value="Edit Profile">
+    </form>
+
+
+    {%if error %}
+        <p> {{ error }} </p>
+    {% endif %}
+</body>
+</html>

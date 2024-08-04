@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/registration.css') }}">
+    <script src="{{ url_for('static', filename='js/registration.js') }}"></script>
+</head>
+<body>
+    <h1>Registration Page</h1>
+    <form name="registrationform" onsubmit="return validate()" method="POST" action="/applyregister">
+        <p>Username <input type="text" name="username"></p>
+        <p>Password <input type="password" name="pwd"></p>
+        <p>Fullname <input type="text" name="fullname"></p>
+        <p>Email <input type="email" name="email"></p>
+        <p>Telephone Number <input type="tel" name="telno"></p>
+        <input type="submit" value="Register">
+    </form>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <p id="hidden-paragraph">All fields must be entered.</p>
+</body>
+</html>

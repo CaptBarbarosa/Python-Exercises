@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Advertisements</title>
+
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/myadvertisement.css') }}">
+    <script src="{{ url_for('static', filename='js/myadv.js') }}"></script>
+</head>
+<body>
+    <h1>Add a new advertisement</h1>
+    <a href="/applylogin">Go back</a>
+    <form name="advertisementform" onsubmit="return validate()" method="POST" action="/addAdvertisement">
+        <p>Title <input type="text" name="title"></p>
+        <p>Description <input type="text" name="desc"></p>
+        <p>Category:
+            <select id="category" name="category">
+                {% for category in category_list  %}
+                    <option value="{{ category[0] }}">{{ category[0] }}</option>
+                {% endfor %}</select>
+        </p>
+        <input type="submit" value="Add">
+        <p id="advertisement_error" style="display: none"></p>
+    </form>
+
+    <h1>Your Advertisements</h1>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Activate/Deactivate</th>
+        </tr>
+
+        {% for ad in advertisement_list %}
+            <tr>
+                <td>{{ ad[1] }}</td>
+                <td>{{ ad[2] }}</td>
+                <td>{{ ad[3] }}</td>
+                {% if ad[4] %}
+                    <td><a href="/deactivate?aid={{ ad[0] }}">Deactivate</a></td>
+                {% else %}
+                    <td><a href="/activate?aid={{ ad[0] }}">Activate</a></td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
